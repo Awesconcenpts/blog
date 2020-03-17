@@ -6,12 +6,12 @@ import Entro from "./entro";
 import Blog from "./Blog/blog";
 import Contact from "./contact";
 class Home extends React.Component {
+	constructor(props) {
+		super(props);
+	}
 	componentDidMount() {
 		setTimeout(function(){ eval("InitialiazeJS()"); },5000)
     }
-	componentDidUpdate(){
-		alert("home")
-	}
   render() {
 	  
     return (

@@ -7,6 +7,4 @@ import Home from "./home";
 import Contact from "./contact";
 import Edit from "./edit";
 import Notfound from "./notfound";
-
-
-ReactDOM.render(<Home />, document.getElementById("main"));
+ReactDOM.render(<Router><Home /></Router>, document.getElementById("main"));

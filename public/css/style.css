@@ -30,7 +30,11 @@
     height: 100%;
     width: 100%;
     margin: 0px!important;
-	top: -130px;
+	top: 0px;
+	display: block;
+
+    right: 0px;
+    position: absolute!important;
 }
 .blog-item-grid .default-btn {
   background: transparent;

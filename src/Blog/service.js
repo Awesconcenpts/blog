@@ -4,7 +4,8 @@ class BlogService {
     this.categories = [
       {
 		  id:1, 
-		  name:"Category 1", 
+		  name:"Category 1",
+		  url:"category-1",
 		  created_at:"01/12/2020", 
 		  updated_at:"01/12/2020", 
 		  created_by:"Kishan Sharma", 
@@ -13,13 +14,15 @@ class BlogService {
       {
 		  id:2, 
 		  name:"Category 2", 
+		  url:"category-2",
 		  created_at:"01/12/2020", 
 		  updated_at:"01/12/2020", 
 		  created_by:"Kishan Sharma", 
 		  description:"Desc 2"},
       {
 		  id:3, 
-		  name:"Category 3", 
+		  name:"Category 3",
+		  url:"category-3",
 		  created_at:"01/12/2020", 
 		  updated_at:"01/12/2020", 
 		  created_by:"Kishan Sharma", 
@@ -30,6 +33,7 @@ class BlogService {
       {
 		  id:11, 
 		  name:"Test Post Article 1",
+		  url:"test-post-article-1",
 		  category_id:1,
 		  created_at:"01/12/2020", 
 		  updated_at:"01/12/2020", 
@@ -39,7 +43,8 @@ class BlogService {
       {
 		  id:12, 
 		  category_id:2,
-		  name:"Test Post Article 2", 
+		  name:"Test Post Article 2",
+		  url:"test-post-article-2",
 		  created_at:"01/12/2020", 
 		  updated_at:"01/12/2020", 
 		  created_by:"Kishan Sharma", 
@@ -49,6 +54,7 @@ class BlogService {
 		  id:13, 
 		  category_id:3,
 		  name:"Test Post Article 3", 
+		  url:"test-post-article-3",
 		  created_at:"01/12/2020", 
 		  updated_at:"01/12/2020", 
 		  created_by:"Kishan Sharma", 
@@ -57,7 +63,8 @@ class BlogService {
 		  {
 		  id:14, 
 		  category_id:3,
-		  name:"Test Post Article 4", 
+		  name:"Test Post Article 4",
+			url:"test-post-article-4",
 		  created_at:"01/12/2020", 
 		  updated_at:"01/12/2020", 
 		  created_by:"Kishan Sharma", 
@@ -114,5 +121,8 @@ class BlogService {
     console.log("ItemService.updateItem():");
     console.log(item);
   }
+	getParamsCategoryId(params){
+		const category = this.categories.find(({ id }) => id === params.categoryId)
+	}
 }
 export default BlogService;

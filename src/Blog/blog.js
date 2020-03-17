@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link,withRouter } from 'react-router-dom';
 import List from './list';
 import BlogService from './service';
+import Utils from './../Core/utils'
 class Blog extends React.Component {
 	state={categories: [],selectedItem:null};
 	constructor(props) {
 		super(props);
 		this.BlogService = new BlogService();
-		//this.onSelect = this.onSelect.bind(this)
-		
+		this.Utils = new Utils();
 	}
 	componentDidMount() {
 	  this.getCategories()
@@ -19,37 +19,16 @@ class Blog extends React.Component {
 			}
 		);
 	}
-	onSelect(itemLink) {
-		
-		this.setState({
-		  	categories:this.state.categories,
-			selectedItem:itemLink
-		},function(){
-			
-			
-		});
-		localStorage.setItem("selectedItem",itemLink);
-		
-  	}
-	
-	componentDidUpdate(){
-		
-		
-	}
-	getId(){
-		return localStorage.getItem("selectedItem");
-	}
   render() {
 	const categories = this.state.categories;
     if(!categories) return null;
 	  const listCategories = categories.map((cat) =>
-      <li onClick={() => this.onSelect(cat.id)}>
-         <Link to={'/blog/'+cat.id}>{cat.name}</Link>
+      <li key={cat.id}>
+         <Link to={'/'+cat.url+".html#blog"}>{cat.name}</Link>
       </li>
     );
-	
 	if(categories.length>0){
-		this.state.selectedItem=categories[0].id;
+		this.state.selectedItem=categories[0].url;
 	}
     return (
       <div className="arlo_tm_section" id="blog">
@@ -67,17 +46,21 @@ class Blog extends React.Component {
 							<h4 className="mb-3">Categories</h4>
 						</div>
 						<div className="short_info_wrap" >
-							<Router exact path={["/", "/blog", "/blog/:id"]}>
+							
 								<ul className="list-unstyled">
 									{listCategories}
 								</ul>
-							</Router>
+							
 						</div>
 					</div>
 					<div className="  col-lg-9">
 						<div className="arlo_tm_contact_wrap">
 							<div className="main_input_wrap" style={{minHeight: "700px"}}>
-								<List id={this.getId()}/>
+								<Router exact path={["/:categoryId", "/:categoryId/:postId"]}>
+									
+										<List categoryId={this.Utils.getUrl(1)} {...this.props} />
+									
+								</Router>
 							</div>
 						</div>
 					</div>
@@ -90,4 +73,4 @@ class Blog extends React.Component {
   }
 }
 
-export default Blog;
+export default withRouter(Blog);
